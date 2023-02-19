@@ -19,7 +19,7 @@ def init_db():
         connection.commit()
 
 
-def stream_events(interval=60, limit=1):
+def stream_events(interval, limit):
     url = "https://api.github.com/events"
     headers = {
         "Accept": "application/vnd.github+json"
@@ -60,11 +60,11 @@ def stream_events(interval=60, limit=1):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--limit', type=int, default=42)
-parser.add_argument('--interval', type=int, default=60)
+parser.add_argument('--limit', type=int, default=1)
+parser.add_argument('--interval', type=int, default=15)
 args = parser.parse_args()
 
 if not os.path.exists('app.db'):
     init_db()
 
-stream_events()
+stream_events(args.interval, args.limit)

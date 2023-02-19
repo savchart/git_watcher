@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>GitHub Event Monitor</title>
-</head>
-<body>
-<h1>GitHub Event Monitor</h1>
-<p>Track and visualize GitHub events in real-time</p>
-<div>
-    <h2>Events</h2>
+    <title>GitHub Events</title>
+  </head>
+  <body>
+    <h1>GitHub Events</h1>
+    <form method="POST" action="/average">
+      <label for="repository">Repository:</label>
+      <input type="text" name="repository" value="chris-kreidl/Ajaxinate">
+      <button type="submit">Calculate Average Time Between Pull Requests</button>
+    </form>
+    <br>
+    <form method="POST" action="/offset">
+      <label for="offset">Offset:</label>
+      <input type="text" name="offset" value="60">
+      <button type="submit">Count Events by Type</button>
+    </form>
+    <br>
+    <form method="POST" action="/metrics_offset">
+      <label for="repository">Repository:</label>
+      <input type="text" name="offset", value="60">
+      <button type="submit">View Visualization of Count Events by Type</button>
+    </form>
+    <br>
     <table>
+      <thead>
         <tr>
-            <th>Event Type</th>
-            <th>Repo</th>
-            <th>Timestamp</th>
+          <th>ID</th>
+          <th>Event Type</th>
+          <th>Repository</th>
+          <th>Created At</th>
         </tr>
+      </thead>
+      <tbody>
         {% for event in events %}
-        <tr>
+          <tr>
+            <td>{{ event.id }}</td>
             <td>{{ event.event_type }}</td>
             <td>{{ event.repository }}</td>
             <td>{{ event.created_at }}</td>
-        </tr>
+          </tr>
         {% endfor %}
+      </tbody>
     </table>
-</div>
-
-</body>
+  </body>
 </html>

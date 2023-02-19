@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offset Metrics</title>
+</head>
+<body>
+    <h1>Offset Metrics</h1>
+    <p>Showing events from the last {{ offset }} minutes:</p>
+    <ul>
+        {% for event_type, count in events.items() %}
+        <li>{{ event_type }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('events.index') }}">Back to homepage</a>
+</body>
+</html>
