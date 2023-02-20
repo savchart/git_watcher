@@ -60,8 +60,8 @@ def stream_events(interval, limit):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--limit', type=int, default=1)
-parser.add_argument('--interval', type=int, default=15)
+parser.add_argument('--limit', type=int, default=10)
+parser.add_argument('--interval', type=int, default=10)
 args = parser.parse_args()
 
 if not os.path.exists('app.db'):
